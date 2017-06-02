@@ -1,0 +1,5 @@
+$TTL 3600
+@   IN   SOA   trustpositif.kominfo.go.id. aduankonten.mail.kominfo.go.id. ( 2017020800 10800 10800 10800 10800 )
+@   IN   NS   localhost.
+
+$INCLUDE "/etc/bind/trust.zone"

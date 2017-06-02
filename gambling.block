@@ -1,0 +1,22 @@
+$TTL 3600
+@   IN   SOA   trustpositif.kominfo.go.id. aduankonten.mail.kominfo.go.id. ( 2017052900 10800 10800 10800 10800 )
+@   IN   NS   localhost.
+
+$INCLUDE "/etc/bind/gambling.zone"
+
+*.casino	IN	A	103.80.80.246
+*.xxx	IN      A       103.80.80.246
+*.adult	IN	A	103.80.80.246
+*.beer	IN	A	103.80.80.246
+*.onion	IN	A	103.80.80.246
+*.poker	IN	A	103.80.80.246
+*.porn	IN	A	103.80.80.246
+*.sex	IN	A	103.80.80.246
+*.sexy	IN	A	103.80.80.246
+*.vodka	IN	A	103.80.80.246
+*.whoswho	IN	A	103.80.80.246
+
+google.com	IN	A	216.239.38.120
+www.google.com	IN	A	216.239.38.120
+google.co.id	IN	A	216.239.38.120
+www.google.co.id	IN	A	216.239.38.120

@@ -1,0 +1,62 @@
+acl MyISP {
+        192.168.0.0/16;
+        172.16.0.0/12;
+        10.0.0.0/8;
+        localhost;
+        localnets;
+};
+
+options {
+	directory "/var/cache/bind";
+        listen-on port 53 { any; };
+        allow-query { 
+               MyISP;
+        };
+
+        minimal-responses yes ;
+	recursion yes;
+        dnssec-enable no;
+        dnssec-validation no;
+        dnssec-lookaside no;
+	bindkeys-file "/etc/bind/bind.keys";
+
+	response-policy {
+		zone "trust.block";
+		zone "hole.block";
+		zone "gambling.block";
+	};
+
+
+	forwarders {
+                    208.67.222.222 port 5353;
+                    208.67.220.220 port 5353;
+	};
+
+	auth-nxdomain no;    # conform to RFC1035
+	listen-on-v6 { any; };
+	version "unknown";
+};
+
+logging {
+  category default { null; };
+};
+
+zone "trust.block" IN {
+        type master;
+        file "/etc/bind/trust.block";
+        check-names     ignore;
+};
+
+
+zone    "hole.block" IN {
+        type master;
+        file "/etc/bind/hole.block";
+        check-names     ignore;
+};
+
+
+zone    "gambling.block" IN {
+        type master;
+        file "/etc/bind/gambling.block";
+        check-names     ignore;
+};
