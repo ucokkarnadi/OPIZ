@@ -36,13 +36,13 @@ statistics-channels {
 
 zone "pass" IN {
         type master;
-        file "/etc/bind/block/pass.zone";
+        file "/etc/bind/pass.zone";
         check-names     ignore;
         notify no;
 };
 zone "block" IN {
         type master;
-        file "/etc/bind/block/block.zone";
+        file "/etc/bind/block.zone";
         check-names     ignore;
         notify no;
 };
