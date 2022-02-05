@@ -4,16 +4,19 @@ options {
             MyISP;
         };
 
-        max-ncache-ttl 3600;
+        listen-on port 53 { any; };
+	listen-on-v6 { any; };
+
+        max-ncache-ttl 10;
         querylog no;
-	      recursion yes;
-	      max-cache-size 8192M;
+	recursion yes;
+	max-cache-size 1024M;
         dnssec-validation no;
-	      recursive-clients 1000;
-	      tcp-clients 100;
+	recursive-clients 1000;
+	tcp-clients 100;
         servfail-ttl 5;
 
-	      bindkeys-file "/etc/bind/bind.keys";
+	bindkeys-file "/etc/bind/bind.keys";
         response-policy {
                 zone "pass" policy passthru;
                 zone "block" policy nodata max-policy-ttl 10;
@@ -25,9 +28,8 @@ options {
                 203.119.13.78;
         };
 
-	      auth-nxdomain no;    # conform to RFC1035
-	      listen-on-v6 { any; };
-	      version "unknown";
+	auth-nxdomain no;    # conform to RFC1035
+	version "unknown";
 };
 
 statistics-channels {
