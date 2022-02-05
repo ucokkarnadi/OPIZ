@@ -1,0 +1,6 @@
+$TTL 3600
+@   IN   SOA   pass. support.jsn.net.id. ( 2022011803 10800 10800 10800 10800 )
+@   IN   NS   localhost.
+
+$INCLUDE "/etc/bind/pass.custom"
+$INCLUDE "/etc/bind/pass.data"
