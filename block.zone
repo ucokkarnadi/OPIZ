@@ -2,5 +2,5 @@ $TTL 3600
 @   IN   SOA   block. support.jsn.net.id. ( 2022020507 10800 10800 10800 10800 )
 @   IN   NS   localhost.
 
-$INCLUDE "/etc/bind/block/block.custom"
-$INCLUDE "/etc/bind/block/block.data"
+$INCLUDE "/etc/bind/block.custom"
+$INCLUDE "/etc/bind/block.data"
