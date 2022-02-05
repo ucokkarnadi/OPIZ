@@ -1,0 +1,48 @@
+options {
+	directory "/var/cache/bind";
+        allow-query { 
+            MyISP;
+        };
+
+        max-ncache-ttl 3600;
+        querylog no;
+	      recursion yes;
+	      max-cache-size 8192M;
+        dnssec-validation no;
+	      recursive-clients 1000;
+	      tcp-clients 100;
+        servfail-ttl 5;
+
+	      bindkeys-file "/etc/bind/bind.keys";
+        response-policy {
+                zone "pass" policy passthru;
+                zone "block" policy nodata max-policy-ttl 10;
+        };
+
+// Forward ke DNS APJII
+        forwarders {
+                203.119.13.77;
+                203.119.13.78;
+        };
+
+	      auth-nxdomain no;    # conform to RFC1035
+	      listen-on-v6 { any; };
+	      version "unknown";
+};
+
+statistics-channels {
+        inet 0.0.0.0 port 8888 allow { any; };
+};
+
+zone "pass" IN {
+        type master;
+        file "/etc/bind/block/pass.zone";
+        check-names     ignore;
+        notify no;
+};
+zone "block" IN {
+        type master;
+        file "/etc/bind/block/block.zone";
+        check-names     ignore;
+        notify no;
+};
