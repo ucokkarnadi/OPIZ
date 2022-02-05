@@ -2,29 +2,31 @@
 
 echo " "
 warna='\e[40;38;5;82m'
-echo -e "${warna} +--------------------------+ \e[0m"
-echo -e "${warna} ¦  Mulai auto setup bind9  ¦ \e[0m"
-echo -e "${warna} +--------------------------+ \e[0m"
+echo -e "${warna} +----------------------------------+ \e[0m"
+echo -e "${warna} ¦      Mulai auto setup bind9      ¦ \e[0m"
+echo -e "${warna} +----------------------------------+ \e[0m"
 echo " "
-echo -e "${warna} +--------------------------+ \e[0m"
-echo -e "${warna} ¦  Update db paket system  ¦ \e[0m"
-echo -e "${warna} +--------------------------+ \e[0m"
+echo -e "${warna} +----------------------------------+ \e[0m"
+echo -e "${warna} ¦      Update db paket system      ¦ \e[0m"
+echo -e "${warna} +----------------------------------+ \e[0m"
 apt-get -y -qq update
 echo " "
-echo -e "${warna} +--------------------------+ \e[0m"
-echo -e "${warna} ¦   Upgrade paket system   ¦ \e[0m"
-echo -e "${warna} +--------------------------+ \e[0m"
+echo -e "${warna} +----------------------------------+ \e[0m"
+echo -e "${warna} ¦       Upgrade paket system       ¦ \e[0m"
+echo -e "${warna} +----------------------------------+ \e[0m"
 apt-get -y -qq upgrade
 echo " "
-echo -e "${warna} +--------------------------+ \e[0m"
-echo -e "${warna} ¦  Install aplikasi bind9  ¦ \e[0m"
-echo -e "${warna} +--------------------------+ \e[0m"
+echo -e "${warna} +----------------------------------+ \e[0m"
+echo -e "${warna} ¦      Install aplikasi bind9      ¦ \e[0m"
+echo -e "${warna} +----------------------------------+ \e[0m"
 apt-get -y -qq install bind9 bind9utils dos2unix
 echo " "
-echo -e "${warna} +--------------------------+ \e[0m"
-echo -e "${warna} ¦  Hentikan service bind9  ¦ \e[0m"
-echo -e "${warna} ¦  Dan persiapkan config   ¦ \e[0m"
-echo -e "${warna} +--------------------------+ \e[0m"
+echo -e "${warna} +----------------------------------+ \e[0m"
+echo -e "${warna} ¦      Hentikan service bind9      ¦ \e[0m"
+echo -e "${warna} ¦      Dan persiapkan config       ¦ \e[0m"
+echo -e "${warna} ¦      Mohon sabar menunggu        ¦ \e[0m"
+echo -e "${warna} ¦      hingga proses selesai       ¦ \e[0m"
+echo -e "${warna} +----------------------------------+ \e[0m"
 service bind9 stop
 curl -s https://raw.githubusercontent.com/ucokkarnadi/OPIZ/master/conf > /etc/bind/named.conf.options
 curl -s https://raw.githubusercontent.com/ucokkarnadi/OPIZ/master/block.zone >  /etc/bind/block.zone
@@ -41,23 +43,37 @@ chmod 666 /etc/bind/block.*
 chown bind:bind /etc/bind/block.*
 
 echo " "
-echo -e "${warna} +--------------------------+ \e[0m"
-echo -e "${warna} ¦ Tambah crontab auto sync ¦ \e[0m"
-echo -e "${warna} +--------------------------+ \e[0m"
+echo -e "${warna} +----------------------------------+ \e[0m"
+echo -e "${warna} ¦      Tambah crontab auto sync    ¦ \e[0m"
+echo -e "${warna} +----------------------------------+ \e[0m"
 (crontab -l; echo "* 3 * * * /bin/bash /usr/local/bin/update;") | sort -u | crontab - ; crontab -l
 echo " "
-echo -e "${warna} +--------------------------+ \e[0m"
-echo -e "${warna} ¦   Start service bind9    ¦ \e[0m"
-echo -e "${warna} +--------------------------+ \e[0m"
+echo -e "${warna} +----------------------------------+ \e[0m"
+echo -e "${warna} ¦      Start service bind9         ¦ \e[0m"
+echo -e "${warna} +----------------------------------+ \e[0m"
 service bind9 start
 service bind9 status | head -25
 echo " "
 IP=`hostname -I`
-echo -e "${warna} +--------------------------+ \e[0m"
-echo -e "${warna} ¦   Setup seleai arahkan   ¦ \e[0m"
-echo -e "${warna} ¦   DNS konsumen ke IP     ¦ \e[0m"
-echo -e "${warna}        $IP         \e[0m"
-echo -e "${warna} ¦                          ¦ \e[0m"
-echo -e "${warna} ¦   Untuk statistik DNS    ¦ \e[0m"
-echo -e "${warna}    http://$IP:8888
-echo -e "${warna} +--------------------------+ \e[0m"
+echo -e "${warna} +----------------------------------+ \e[0m"
+echo -e "${warna} ¦       Setup seleai arahkan       ¦ \e[0m"
+echo -e "${warna} ¦        DNS konsumen ke IP        ¦ \e[0m"
+for i in $IP;
+do
+echo -e "${warna} ¦       $i         \e[0m"
+done
+echo -e "${warna} ¦                                  ¦ \e[0m"
+echo -e "${warna} ¦      Untuk statistik DNS         ¦ \e[0m"
+for i in $IP;
+do
+echo -e "${warna} ¦    http://$i:8888 \e[0m"
+done
+echo -e "${warna} +----------------------------------+ \e[0m"
+echo " "
+echo " "
+echo -e "${warna} +----------------------------------+ \e[0m"
+echo -e "${warna} ¦ Terima kasih telah menggunanakan ¦ \e[0m"
+echo -e "${warna} ¦   Script Setup DNS Filter kami   ¦ \e[0m"
+echo -e "${warna} ¦        #JSN #Jaringanku          ¦ \e[0m"
+echo -e "${warna} ¦     jaringan kita bersama        ¦ \e[0m"
+echo -e "${warna} +----------------------------------+ \e[0m"
