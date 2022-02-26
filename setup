@@ -19,7 +19,7 @@ echo " "
 echo -e "${warna} +----------------------------------+ \e[0m"
 echo -e "${warna} ¦      Install aplikasi bind9      ¦ \e[0m"
 echo -e "${warna} +----------------------------------+ \e[0m"
-apt-get -y -qq install bind9 bind9utils dos2unix
+apt-get -y -qq install bind9 bind9utils dos2unix curl
 echo " "
 echo -e "${warna} +----------------------------------+ \e[0m"
 echo -e "${warna} ¦      Hentikan service bind9      ¦ \e[0m"
