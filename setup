@@ -31,14 +31,10 @@ service bind9 stop
 curl -s https://raw.githubusercontent.com/ucokkarnadi/OPIZ/master/conf > /etc/bind/named.conf.options
 curl -s https://raw.githubusercontent.com/ucokkarnadi/OPIZ/master/block.zone >  /etc/bind/block.zone
 curl -s https://raw.githubusercontent.com/ucokkarnadi/OPIZ/master/block.custom >  /etc/bind/block.custom
-curl -s https://raw.githubusercontent.com/ucokkarnadi/OPIZ/master/pass.zone >  /etc/bind/pass.zone
-curl -s https://raw.githubusercontent.com/ucokkarnadi/OPIZ/master/pass.data >  /etc/bind/pass.data
 
 curl -s https://raw.githubusercontent.com/ucokkarnadi/OPIZ/master/update > /usr/local/bin/update
 /bin/bash /usr/local/bin/update
 
-chmod 666 /etc/bind/pass.*
-chown bind:bind /etc/bind/pass.*
 chmod 666 /etc/bind/block.*
 chown bind:bind /etc/bind/block.*
 
